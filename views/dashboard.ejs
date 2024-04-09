@@ -1,0 +1,74 @@
+<%- include('./partials/header.ejs') %>
+
+
+    <div class="containerT">
+
+        <% if(locals.tasks) { %>
+
+              
+            <% if(locals.tasks.length> 0) { %>
+                <table>
+                    <tr>
+                        <th><img src="/public//imgs/chart.png"></th>
+                        <th>Subject</th>
+                        <th>Priority</th>
+                        <th>Due date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <% tasks.forEach(function(task) { %>
+
+                        <% let t=task %>
+
+                            <tr>
+                                <td>
+                                    <img class="statusImg"
+                                        src="<%= t.status === 1 ? '/public/imgs/Check.png' : '/public/imgs/NoCheck.png' %>" alt="">
+                                </td>
+                                <td>
+
+                                    <%= t.subject %>
+                                </td>
+                                <td class="priority">
+                                    <span>
+                                        <%= t.priority %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <%= t.date %>
+                                </td>
+                                <td>
+                                    <select class="status"
+                                        onchange="sendStatusUpdate(this.value, this.parentNode.parentNode.rowIndex)">
+                                        <% if (t.status===0) { %>
+                                            <option value="0" selected>In Progress</option>
+                                            <option value="1">Completed</option>
+                                            <% } else if (t.status===1) { %>
+                                                <option value="1" selected>Completed</option>
+                                                <option value="0">In Progress</option>
+                                                <% } %>
+                                    </select>
+                                </td>
+                                <td class="actions">
+                                    <button id="eb"><a href="/edit/<%= t.id%>">Edit</a></button>
+                                    <button id="db"><a href="/del/<%= t.id%>">Del</a></button>
+                                </td>
+                            </tr>
+
+                            <% }) %>
+                                <% }else { %>
+                                    <p style="text-align: center; font-size: 26px; margin-top: 12%;">click <a
+                                            href="/addtask">Here</a> to add task</p>
+                                    <% }} %>
+
+                </table>
+    </div>
+    <div>
+        <button onclick="addTask()" class="add-task-btn">Add Task</button>
+
+    </div>
+    </body>
+
+    </html>
+
+    <%- include('./partials/footer.ejs') %>

@@ -1,0 +1,40 @@
+<%- include('./partials/header.ejs') %>
+
+    <body>
+        
+
+        <a id="return" href="/">
+            <img src="/public/imgs/return.png" alt="return">
+        </a>
+        
+        <form action="/dashboard" method="post">
+            <div>
+                <% if (successMessage) { %>
+                    <div class="alert alert-success">
+                        <%= successMessage %>
+                    </div>
+                    <% } %>
+        
+                        <% if (errorMessage) { %>
+                            <div class="alert alert-danger">
+                                <%= errorMessage %>
+                            </div>
+                            <% } %>    
+                        </div>
+            <h1>Add Task</h1>
+            <img src="/public/imgs/logo.png" alt="Logo">
+            <input type="text" placeholder="Subject.." name="subject" required />
+            <p>Priority: <select name="priority" id="priority">
+                    <option value="low">Low</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="high">High</option>
+                </select>
+            </p>
+            <p>Due date: <input name="date" type="date"></p>
+            <input type="submit" value="add">
+        </form>
+
+    </body>
+
+    </html>
+    <%- include('./partials/footer.ejs') %>

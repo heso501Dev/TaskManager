@@ -1,0 +1,35 @@
+<%- include('./partials/header.ejs') %>
+
+    <body>
+        
+
+        <a id="return" href="/">
+            <img src="/public/imgs/return.png" alt="return">
+        </a>
+
+                    <% if(locals.task){ %>
+        <form id="editForm" action="/edit">
+
+
+                <input type="text" name="id" value="<%= task.id %>" hidden>
+                <h1>Edit Task</h1>
+                <img src="/public/imgs/logo.png" alt="Logo">
+                <input type="text" value="<%= task.subject %>" name="subject" required />
+                <p>Priority: 
+                    <select name="priority" id="priority">
+                        <option value="low" <%= task.priority === 'low' ? 'selected' : '' %>>Low</option>
+                        <option value="moderate" <%= task.priority === 'moderate' ? 'selected' : '' %>>Moderate</option>
+                        <option value="high" <%= task.priority === 'high' ? 'selected' : '' %>>High</option>
+                    </select>
+                </p>
+                <p>Due date: <input name="date" value="<%= task.date %>" type="date"></p>
+                <input type="submit" value="Edit">
+            <% } %>
+        </form>
+        
+
+    </body>
+
+    </html>
+
+        <%- include('./partials/footer.ejs') %>

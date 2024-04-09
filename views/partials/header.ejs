@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+
+        /* =========================================== */
+        /* ============== Search  ==================== */
+        /* =========================================== */
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .search-container input[type="text"] {
+            padding: 10px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            border-radius: 20px;
+            background-color: #f1f1f1;
+        }
+
+        .search-container button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-container button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .search-container button:focus {
+            outline: none;
+        }
+
+        .containerT {
+            max-height: 68%;
+            overflow-y: auto;
+        }
+
+        /* =========================================== */
+        /* ==============  Table  ==================== */
+        /* =========================================== */
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            padding: 10px 8%;
+        }
+
+        table img {
+            width: 40px;
+            height: 40px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th:first-child,
+        td:first-child {
+            border-left: none;
+        }
+
+        th:last-child,
+        td:last-child {
+            border-right: none;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* =========================================== */
+        /* ==============   Form  ==================== */
+        /* =========================================== */
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center horizontally */
+            justify-content: center;
+            /* Center vertically */
+            position: absolute;
+            /* Position absolute to center in viewport */
+            top: 50%;
+            /* Position from the top */
+            left: 50%;
+            /* Position from the left */
+            transform: translate(-50%, -50%);
+            /* Translate to center */
+
+        }
+
+        form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        form a {
+            margin-top: 20px;
+            color: #404040;
+            text-decoration: none;
+            font-size: smaller;
+        }
+
+        #return img {
+            position: fixed;
+            top: 4%;
+            right: 4%;
+            width: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #545454;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #303030;
+        }
+
+        /* =========================================== */
+        /* ==============  Add Task ================== */
+        /* =========================================== */
+
+        .add-task-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 80px;
+            background-color: #5a5a5a;
+            color: #d0cfcf;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-task-btn:hover {
+            background-color: #3a3a3a;
+        }
+
+
+
+        .priority {
+
+            border-radius: 8px;
+            padding: 8px;
+            color: white;
+        }
+
+        /* =========================================== */
+        /* ==============   Action  ================== */
+        /* =========================================== */
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Style for the buttons within the actions column */
+        .actions button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .actions a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .actions #eb {
+            background-color: #4CAF50;
+        }
+
+        .actions #db {
+            background-color: #af654c;
+        }
+
+
+        /* =========================================== */
+        /* ==============  flash mg ================== */
+        /* =========================================== */
+
+        /* Success message */
+        .alert-success {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #2ecc71;
+            border-radius: 4px;
+            color: #2ecc71;
+            background-color: #d4edda;
+        }
+
+        /* Error message */
+        .alert-danger {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ff4136;
+            border-radius: 4px;
+            color: #ff4136;
+            background-color: #f8d7da;
+        }
+
+
+        /* Style for the character list container */
+        .char-list {
+            display: flex;
+            width: 100%;
+            /* Make the container take full width */
+            justify-content: space-around;
+            /* Adjust spacing between characters */
+            background-color: rgb(176, 176, 176);
+            padding: 20px 0px;
+        }
+
+        /* Style for each individual character */
+        .char {
+            flex-grow: 1;
+            /* Each character takes equal space */
+            cursor: pointer;
+            /* Show pointer cursor on hover */
+            text-align: center;
+            /* Center align the text */
+        }
+
+        /* Style for clicked characters */
+        .char.clicked {
+            color: none;
+            /* Change color when clicked */
+        }
+    </style>
+</head>
+
+<body>
