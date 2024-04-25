@@ -1,6 +1,5 @@
 # TaskOrganizer
 
-**Date of Creation:** 6/11/2023
 
 This project is a task manager built with Node.js, allowing users to add, edit, and delete tasks. Tasks are managed through the file system, enabling local storage using a JSON file database.
 
