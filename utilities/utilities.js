@@ -1,7 +1,7 @@
-// utilities.js
-
-const fs = require('fs');
-
+const fs = require('fs'); 
+// ================
+// json db
+// ================
 let tasks = '';
 // Check if user file exists
 const fileExists = (filename) => {
@@ -58,4 +58,4 @@ const rdFile = (filename) => {
 }
 
 
-module.exports = { fileExists, modifyFile, writeFile, appendToFile, rdFile };
+module.exports = {fileExists, modifyFile, writeFile, appendToFile, rdFile}
